@@ -4,7 +4,7 @@ import {
   editMessageBegin, editMessageSuccess, editMessageError,
   deleteMessageBegin, deleteMessageError, deleteMessageSuccess} from './index';
 
-const apiAddress = "/api/";
+const apiAddress = "http://localhost:5000/api/";
 
 export function fetchMessages() {
   return dispatch => {
