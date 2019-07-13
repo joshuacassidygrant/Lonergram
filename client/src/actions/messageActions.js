@@ -4,10 +4,12 @@ import {
   editMessageBegin, editMessageSuccess, editMessageError,
   deleteMessageBegin, deleteMessageError, deleteMessageSuccess} from './index';
 
+const apiAddress = "/api/";
+
 export function fetchMessages() {
   return dispatch => {
     dispatch(fetchMessagesBegin());
-    return fetch("http://localhost:9000/messages")
+    return fetch(apiAddress + "messages")
           .then(handleErrors)
           .then(res => res.json())
           .then(json => {
@@ -21,7 +23,7 @@ export function fetchMessages() {
 export function addNewMessage(message) {
   return dispatch => {
       dispatch(addMessageBegin());
-      return fetch("http://localhost:9000/messages", {
+      return fetch(apiAddress + "messages", {
         method: 'POST',
         mode: 'cors',
         cache: 'no-cache',
@@ -48,7 +50,7 @@ export function addNewMessage(message) {
 export function editMessage(message) {
   return dispatch => {
     dispatch(editMessageBegin());
-    return fetch("http://localhost:9000/messages/" + message._id, {
+    return fetch(apiAddress + "messages/" + message._id, {
       method: 'PUT',
       mode: 'cors',
       cache: 'no-cache',
@@ -74,7 +76,7 @@ export function editMessage(message) {
 export function deleteMessage(message) {
   return dispatch => {
     dispatch(deleteMessageBegin());
-      return fetch("http://localhost:9000/messages/" + message._id, {
+      return fetch(apiAddress + "messages/" + message._id, {
         method: 'DELETE',
         mode: 'cors',
         cache: 'no-cache',
@@ -96,7 +98,7 @@ export function deleteMessage(message) {
 export function clearAllMessages() {
   return dispatch => {
     dispatch(fetchMessagesBegin());
-    return fetch("http://localhost:9000/messages", {
+    return fetch(apiAddress + "messages", {
           method: 'DELETE',
           mode: 'cors',
           cache: 'no-cache'
