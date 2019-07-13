@@ -2,6 +2,7 @@
   "name": "lonergram-reloaded",
   "version": "0.9.0",
   "private": true,
+  "proxy": "http://localhost:5000/",
   "engines": {
     "node": "9.3.0"
   },
@@ -20,7 +21,8 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "concurrently \"(cd api && npm run start)\" \"react-scripts build\"",
+    "build": "react-scripts build",
+    "heroku-postbuild": "cd api && npm install && npm install --only=dev --no-shrinkwrap && npm run build"
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "dev": "concurrently \"(cd api && npm run start)\" \"npm run start\""
