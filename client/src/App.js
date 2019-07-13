@@ -1,25 +1,24 @@
 import React from 'react';
-import { BrowserRouter  as Router, Route } from 'react-router-dom';
-import PageLayout from './components/PageLayout';
-import About from './pages/About.js';
-import Feed from './pages/Feed.js';
-import Privacy from './pages/Privacy.js';
-
-import AppHeader from './components/AppHeader.js';
-
+import logo from './logo.svg';
 import './App.css';
 
 function App() {
   return (
-    <div className ="container" id="main-container">
-      <Router>
-        <AppHeader />
-        <PageLayout>
-          <Route path="/" exact component={Feed} />
-          <Route path="/about" component={About} />
-          <Route path="/privacy" component={Privacy} />
-        </PageLayout>
-      </Router>
+    <div className="App">
+      <header className="App-header">
+        <img src={logo} className="App-logo" alt="logo" />
+        <p>
+          Edit <code>src/App.js</code> and save to reload.
+        </p>
+        <a
+          className="App-link"
+          href="https://reactjs.org"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Learn React
+        </a>
+      </header>
     </div>
   );
 }
