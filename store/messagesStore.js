@@ -17,14 +17,12 @@ const store = {
           throw err;
         }
         const db = client.db(dbName);
-        db.collection(messageCollection).find({}).toArray(function(err, docs) {
-          if (err) {
-            logger.info(JSON.stringify(err));
-            throw err;
-          }
-          callback(docs);
+
+        db.collection(messageCollection).find({}).toArray(function(error, documents) {
+            if (err) throw error;
+
+            callback(docs);
         });
-        client.close();
       })
     },
 
