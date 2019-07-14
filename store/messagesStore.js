@@ -14,14 +14,14 @@ const store = {
       logger.info("here", {here: "here"});
       MongoClient.connect(url, (err, client) => {
         if (err) {
-          logger.info("err": JSON.stringify(err));
+          logger.info("err", {err : JSON.stringify(err)});
           throw err;
         }
         const db = client.db(dbName);
 
         db.collection(messageCollection).find({}).toArray(function(error, documents) {
             if (err) {
-              logger.info("err": JSON.stringify(err));
+              logger.info("err", {err : JSON.stringify(err)});
               throw error;
             }
             callback(docs);
