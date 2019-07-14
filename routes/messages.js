@@ -7,7 +7,8 @@ router.get('/', function(req, res, next) {
     logger.info(JSON.stringify(req));
     store.get((results) => {
       logger.info(JSON.stringify(results));
-      res.send(results);
+
+      res.json(results);
     });
 });
 
