@@ -11,17 +11,19 @@ const url  = process.env.MONGODB_URI;
 const store = {
 
   get(callback) {
-      logger.info("here");
+      logger.info("here", {here: "here"});
       MongoClient.connect(url, (err, client) => {
         if (err) {
-          logger.info(JSON.stringify(err));
+          logger.info("err": JSON.stringify(err));
           throw err;
         }
         const db = client.db(dbName);
 
         db.collection(messageCollection).find({}).toArray(function(error, documents) {
-            if (err) throw error;
-
+            if (err) {
+              logger.info("err": JSON.stringify(err));
+              throw error;
+            }
             callback(docs);
         });
       })
