@@ -11,17 +11,14 @@ const url  = process.env.MONGODB_URI;
 const store = {
 
   get(callback) {
-      logger.info("here", {here: "here"});
       MongoClient.connect(url, (err, client) => {
         if (err) {
-          logger.info("err", {err : JSON.stringify(err)});
           throw err;
         }
         const db = client.db(dbName);
 
         db.collection(messageCollection).find({}).toArray(function(error, documents) {
             if (err) {
-              logger.info("err", {err : JSON.stringify(err)});
               throw error;
             }
             callback(docs);
@@ -32,7 +29,6 @@ const store = {
   add(message) {
     MongoClient.connect(url, (err, client) => {
       if (err) {
-        logger.info(JSON.stringify(err));
         throw err;
       }
       const db = client.db(dbName);
@@ -44,7 +40,6 @@ const store = {
   put(message) {
     MongoClient.connect(url, (err, client) => {
       if (err) {
-        logger.info(JSON.stringify(err));
         throw err;
       }
       const db = client.db(dbName);
@@ -59,7 +54,7 @@ const store = {
         },
         function (err, docs) {
           if (err) {
-            logger.info(JSON.stringify(err));
+            throw err;
           }
           console.log(success);
         }
