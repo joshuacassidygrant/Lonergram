@@ -11,6 +11,7 @@ const url  = process.env.MONGODB_URI;
 const store = {
 
   get(callback) {
+      logger.info("here");
       MongoClient.connect(url, (err, client) => {
         if (err) {
           logger.info(JSON.stringify(err));
