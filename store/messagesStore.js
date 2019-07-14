@@ -5,10 +5,12 @@ const dbName = 'lonergram';
 const messageCollection = 'messages';
 const dbUser = "loner";
 const dbPass = "4MH3sVfqRuhYC6c";
-const url = `mongodb://${dbUser}:${dbPass}@ds217351.mlab.com:17351/heroku_8kvjg5pj`;
+const url  = `mongodb://${dbUser}:${dbPass}@ds217351.mlab.com:17351/heroku_8kvjg5pj`;
 const store = {
 
   get(callback) {
+      console.log(url);
+      callback(url);
       MongoClient.connect(url, (err, client) => {
         if (err) {
           throw err;
