@@ -17,7 +17,7 @@ const store = {
         }
         const db = client.db(dbName);
 
-        db.collection(messageCollection).find({}).toArray(function(error, documents) {
+        db.collection(messageCollection).find({}).toArray(function(error, docs) {
             if (err) {
               throw error;
             }
