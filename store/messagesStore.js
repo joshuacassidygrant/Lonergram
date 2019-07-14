@@ -6,6 +6,7 @@ dotenv.config();
 const logger = require('heroku-logger');
 const messageCollection = 'messages';
 
+const dbName = process.env.MONGODB_NAME;
 const url  = process.env.MONGODB_URI;
 const store = {
 
