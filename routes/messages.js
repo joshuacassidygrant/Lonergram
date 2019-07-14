@@ -3,6 +3,7 @@ var router = express.Router();
 var store = require('../store/messagesStore');
 
 router.get('/', function(req, res, next) {
+    console.log(JSON.stringify(req));
     store.get((results) => {
       res.send(results);
     });

@@ -21,11 +21,15 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 
+app.use("/messages", messagesRouter);
+
 if (process.env.NODE_ENV === 'production') {
   app.use(express.static(path.join(__dirname, 'client/build')));
 
 
   app.get('*', function(req, res) {
+      console.log(JSON.stringify(req));
+      console.log(JSON.stringify(res));
       res.sendFile(path.join(__dirname, 'client/build', 'index.html'));
   });
 }
@@ -33,7 +37,7 @@ if (process.env.NODE_ENV === 'production') {
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 
-app.use("/messages", messagesRouter);
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
