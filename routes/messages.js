@@ -1,10 +1,12 @@
 var express = require('express');
 var router = express.Router();
 var store = require('../store/messagesStore');
+const logger = require('heroku-logger');
 
 router.get('/', function(req, res, next) {
-    console.log(JSON.stringify(req));
+    logger.info(JSON.stringify(req));
     store.get((results) => {
+      logger.info(JSON.stringify(results));
       res.send(results);
     });
 });
