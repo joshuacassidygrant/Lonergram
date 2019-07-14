@@ -1,11 +1,8 @@
 const fs = require('fs');
 const MongoClient = require('mongodb').MongoClient;
 //const url  = 'mongodb://localhost:27017/';
-import dotenv from 'dotenv';
-require('dotenv').config();
-const dbName = 'lonergram';
-const dbUser = "loner";
-const dbPass = "4MH3sVfqRuhYC6c";
+var dotenv = require('dotenv');
+dotenv.config();
 const messageCollection = 'messages';
 
 const url  = process.env.MONGODB_URI;
