@@ -4,6 +4,7 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var cors = require('cors');
+const hlogger = require('heroku-logger');
 
 
 var indexRouter = require('./routes/index');
@@ -29,6 +30,7 @@ if (process.env.NODE_ENV === 'production') {
   app.use("/messages", messagesRouter);
 
   app.get('/', function(req, res) {
+      hlogger.info(JSON.stringify(req));
       res.sendFile(path.join(__dirname, 'client/build', 'index.html'));
   });
 }
