@@ -26,10 +26,10 @@ app.use(cookieParser());
 //app.use('/', indexRouter);
 
 if (process.env.NODE_ENV === 'production') {
-  app.use(express.static(path.join(__dirname, 'client/build')));
+  //app.use(express.static(path.join(__dirname, 'client/build')));
   app.use("/messages", messagesRouter);
 
-  app.get('/ui', function(req, res) {
+  app.get('/', function(req, res) {
       hlogger.info(JSON.stringify(req));
       res.sendFile(path.join(__dirname, 'client/build', 'index.html'));
   });
