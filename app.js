@@ -22,10 +22,11 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 
 app.use("/messages", messagesRouter);
+app.use('/', indexRouter);
+app.use('/users', usersRouter);
 
 if (process.env.NODE_ENV === 'production') {
   app.use(express.static(path.join(__dirname, 'client/build')));
-
 
   app.get('*', function(req, res) {
       console.log(JSON.stringify(req));
@@ -34,8 +35,6 @@ if (process.env.NODE_ENV === 'production') {
   });
 }
 
-app.use('/', indexRouter);
-app.use('/users', usersRouter);
 
 
 
