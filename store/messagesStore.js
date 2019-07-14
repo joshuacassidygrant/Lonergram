@@ -1,16 +1,17 @@
 const fs = require('fs');
 const MongoClient = require('mongodb').MongoClient;
 //const url  = 'mongodb://localhost:27017/';
+import dotenv from 'dotenv';
+require('dotenv').config();
 const dbName = 'lonergram';
-const messageCollection = 'messages';
 const dbUser = "loner";
 const dbPass = "4MH3sVfqRuhYC6c";
-const url  = `mongodb://${dbUser}:${dbPass}@ds217351.mlab.com:17351/heroku_8kvjg5pj`;
+const messageCollection = 'messages';
+
+const url  = process.env.MONGODB_URI;
 const store = {
 
   get(callback) {
-      console.log(url);
-      callback(url);
       MongoClient.connect(url, (err, client) => {
         if (err) {
           throw err;
