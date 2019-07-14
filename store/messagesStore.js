@@ -1,8 +1,9 @@
 const fs = require('fs');
 const MongoClient = require('mongodb').MongoClient;
 //const url  = 'mongodb://localhost:27017/';
-var dotenv = require('dotenv');
+const dotenv = require('dotenv');
 dotenv.config();
+const logger = require('heroku-logger');
 const messageCollection = 'messages';
 
 const url  = process.env.MONGODB_URI;
@@ -11,11 +12,13 @@ const store = {
   get(callback) {
       MongoClient.connect(url, (err, client) => {
         if (err) {
+          logger.info(JSON.stringify(err));
           throw err;
         }
         const db = client.db(dbName);
         db.collection(messageCollection).find({}).toArray(function(err, docs) {
           if (err) {
+            logger.info(JSON.stringify(err));
             throw err;
           }
           callback(docs);
@@ -27,6 +30,7 @@ const store = {
   add(message) {
     MongoClient.connect(url, (err, client) => {
       if (err) {
+        logger.info(JSON.stringify(err));
         throw err;
       }
       const db = client.db(dbName);
@@ -38,10 +42,10 @@ const store = {
   put(message) {
     MongoClient.connect(url, (err, client) => {
       if (err) {
+        logger.info(JSON.stringify(err));
         throw err;
       }
       const db = client.db(dbName);
-      console.log(message.filters);
       let success = db.collection(messageCollection).updateOne(
         {_id: message._id},
         { $set:
@@ -52,6 +56,9 @@ const store = {
           }
         },
         function (err, docs) {
+          if (err) {
+            logger.info(JSON.stringify(err));
+          }
           console.log(success);
         }
       );
